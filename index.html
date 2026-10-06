@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sentinel of Cybersecurity | Evalúe la ciberseguridad de su PYME gratis</title>
-<meta name="sentinel-version" content="PILOT-1.2-06OCT2026">
+<meta name="sentinel-version" content="PILOT-1.2.1-VISUAL-FIX-06OCT2026">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
@@ -372,6 +372,105 @@ nav a.l:hover { color:#74c8ff !important; }
 @media(max-width:900px){
   #ley{background-position:66% center}
   #check #app{max-width:none!important}
+}
+</style>
+
+
+<style id="sentinel-pilot-121-contrast-fix">
+/* PILOT 1.2.1 — corrección de contraste del CHECK.
+   No modifica preguntas, pesos, Sentinel Score ni lógica P18/P19. */
+
+/* La zona de evaluación siempre usa paleta oscura, aunque el sistema operativo esté en modo claro. */
+#check{
+  --ink:#f7fbff;
+  --mute:#c5d3e8;
+  --line:#38557c;
+  --bg:#07162b;
+  --bg2:#0b1d36;
+  --bad:#ff4d57;
+  --hi:#ff9a57;
+  --warn:#ffc247;
+  --ok:#43dda5;
+  color:#f7fbff;
+}
+
+/* Preguntas, resultados, tarjetas y roadmap: texto legible sobre fondo oscuro. */
+#check #app,
+#check #app h2,
+#check #app h3,
+#check #app p,
+#check #app label,
+#check #app .opt,
+#check #app .do,
+#check #app .rm,
+#check #app .plans .card{
+  color:#f7fbff;
+}
+#check #app .mute,
+#check #app .note{
+  color:#c5d3e8;
+}
+
+/* Botones secundarios: Anterior, correo, PDF y repetir evaluación. */
+#check #app .btn.g{
+  color:#ffffff !important;
+  border-color:#5d7fae !important;
+  background:rgba(5,20,42,.58) !important;
+}
+#check #app .btn.g:hover:not(:disabled){
+  color:#ffffff !important;
+  border-color:#4aa3ff !important;
+  background:rgba(47,140,255,.16) !important;
+}
+#check #app .btn.g:disabled{
+  color:rgba(255,255,255,.68) !important;
+  border-color:rgba(112,145,188,.52) !important;
+  background:rgba(5,20,42,.42) !important;
+  opacity:.62;
+}
+
+/* Prioridades: conservar semáforo. "Crítico" vuelve a rojo. */
+#check #pri .f{
+  color:#f7fbff;
+  background:rgba(7,22,43,.92) !important;
+  border-left-color:var(--c) !important;
+}
+#check #pri .f > b{
+  color:var(--c) !important;
+  font-weight:800;
+}
+#check #pri .f .note{
+  color:#c5d3e8 !important;
+}
+#check #pri .f div b{
+  color:#ffffff !important;
+}
+
+/* Tarjetas SAM: nivel y número mantienen su color de estado; textos restantes blancos. */
+#check #app .dc .n,
+#check #app .dc .lv{
+  color:var(--c) !important;
+}
+#check #app .dc .do b{
+  color:#ffffff !important;
+}
+
+/* Planes dentro del resultado. */
+#check #app .plans .card p,
+#check #app .plans .card h3,
+#check #app .plans .card b{
+  color:#ffffff;
+}
+#check #app .plans .card .lv{
+  color:var(--cyan) !important;
+}
+
+/* Inputs claros conservan texto oscuro. */
+#check #app input[type="text"],
+#check #app input[type="email"],
+#check #app select,
+#check #app textarea{
+  color:#0a1730 !important;
 }
 </style>
 
