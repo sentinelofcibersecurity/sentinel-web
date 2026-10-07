@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Wvg5tZSEuKbjZ9cQCa3qzslpNytYqHzTa9xTvsbJelU=' 'sha256-H3XS9ALmY2TClV7yIbAOr7RxShnHdw/A5ztJERYzlnY=' 'sha256-5T8B+RDrBq3q3ru3TefDdW0Lsy4n1rmYVxkMdbx1E/w=' 'sha256-JTPUSj/JUXW6FqzTI4waYTI/7pWRsQgdBI8tDo2jmJw=' 'sha256-oX8EBtL9XzdeKS1tAlI9WOjOMHuqMJpseIo3N72wxnY=' 'sha256-KBPe9zulC3HrMWsz2VrsgZEHvBp/CJjvnRPYzF2c9GM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Wvg5tZSEuKbjZ9cQCa3qzslpNytYqHzTa9xTvsbJelU=' 'sha256-pE+4cEY3ed8rDzEpsyrTws5u4hSA1w0ix9+tgbCbT00=' 'sha256-5T8B+RDrBq3q3ru3TefDdW0Lsy4n1rmYVxkMdbx1E/w=' 'sha256-JTPUSj/JUXW6FqzTI4waYTI/7pWRsQgdBI8tDo2jmJw=' 'sha256-oX8EBtL9XzdeKS1tAlI9WOjOMHuqMJpseIo3N72wxnY=' 'sha256-KBPe9zulC3HrMWsz2VrsgZEHvBp/CJjvnRPYzF2c9GM='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://images.unsplash.com; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sentinel of Cybersecurity | Evalúe la ciberseguridad de su organización gratis</title>
-<meta name="sentinel-version" content="PILOT-1.4.4-CSP-FIX-07OCT2026">
+<meta name="sentinel-version" content="PILOT-1.4.5-PUBLICACION-07OCT2026">
 
 
 <style>
@@ -527,7 +527,7 @@ nav a.l:hover { color:#74c8ff !important; }
 <form id="s0" class="card">
 <h2>Antes de comenzar</h2>
 <p class="mute">Indique cómo trabaja. Usaremos este perfil para mostrarle las preguntas que correspondan.</p>
-<div class="row"><div><label for="emp">Nombre de la organización (opcional)</label><input type="text" id="emp" placeholder="Nombre de su empresa"></div>
+<div class="row"><div><label for="emp">Nombre de la organización</label><input type="text" id="emp" placeholder="Nombre de su empresa" required></div>
 <div><label for="sec">Sector</label><select id="sec"><option>Salud</option><option>Comercio / e-commerce</option><option>Servicios profesionales</option><option>Contabilidad y remuneraciones</option><option>Recursos humanos</option><option>Servicios jurídicos</option><option>Corredoras y administración de propiedades</option><option>Sindicatos y asociaciones</option><option>Educación</option><option>Construcción</option><option>Transporte y logística</option><option>Tecnología</option><option>Otro</option></select></div>
 <div><label for="tam">¿Cuántas personas trabajan?</label><select id="tam"><option>Solo yo</option><option>2 a 10 personas</option><option>11 a 50 personas</option><option>51 a 200 personas</option><option>Más de 200 personas</option></select></div></div>
 
@@ -778,8 +778,8 @@ function result(){
  if(fl.indexOf(7)>-1)ctx.push("Un incidente reciente sugiere priorizar Detección e Incidentes y Continuidad.");
  $("ctx").textContent=ctx.join(" ");
  $("doms").innerHTML=ds.map(function(d,k){var L=d.v===null?["No aplica según perfil","var(--mute)"]:lvl(d.v);return'<div class="card dc" style="--c:'+L[1]+'"><div class="h"><h3>SAM-'+String(k+1).padStart(2,"0")+" · "+D[k][0]+'</h3><span class="n">'+(d.v===null?'N/A':d.v)+'</span></div><div class="bar"><i style="width:'+(d.v||0)+'%"></i></div><div class="lv">'+L[0]+'</div><p class="mute" style="margin:6px 0 0;font-size:.92rem">'+D[k][1]+'</p><div class="do"><b>Qué hacer:</b> '+(d.v===null?'Sin recomendación para este dominio excluido.':D[k][2])+'</div></div>'}).join("");
- F.sort(function(a,b){return b.sev-a.sev});$("ctx").textContent+=" SAM 1.0-piloto · "+(Q.length-Object.keys(NA).length)+" controles aplicables de 25. Exclusiones: "+Object.keys(NA).map(function(k){return "P"+(+k+1)+": "+NA[k]}).join("; ");
- var SV=[0,["Medio","var(--warn)"],["Alto","var(--hi)"],["Madurez declarada muy baja","var(--bad)"]];
+ F.sort(function(a,b){return b.sev-a.sev});$("ctx").textContent+=" SAM 1.0-piloto · "+(Q.length-Object.keys(NA).length)+" controles aplicables de 25. Exclusiones: "+(Object.keys(NA).length?Object.keys(NA).map(function(k){return "P"+(+k+1)+": "+NA[k]}).join("; "):"Ninguna");
+ var SV=[0,["Media","var(--warn)"],["Alta","var(--hi)"],["Crítica","var(--bad)"]];
  $("pri").innerHTML=F.slice(0,3).map(function(f){return'<div class="f" style="--c:'+SV[f.sev][1]+'"><b>'+SV[f.sev][0]+'</b> · '+f.t+(f.ns?' <span class="note">(respondió “No sé”)</span>':"")+'<div class="note" style="margin-top:4px">'+f.d+'</div><div style="margin-top:4px;font-size:.92rem"><b style="color:var(--ink)">Acción:</b> '+f.a+'</div></div>'}).join("")||"<p>Sin brechas relevantes en esta evaluación.</p>";
  function by(s){return F.filter(function(f){return f.sev===s}).map(function(f){return f.a})}
  var R=[["0–7 días","Emergencia",by(3)],["8–30 días","Estabilización",by(2)],["31–60 días","Fortalecimiento",by(1)],["61–90 días","Madurez",["Reevaluar con Sentinel y verificar con evidencias el avance del score."]]];
@@ -787,11 +787,11 @@ function result(){
  var H=[];try{H=JSON.parse(localStorage.getItem("sentinel_hist")||"[]")}catch(e){}
  H=H.filter(function(h){return typeof h.d==="string"&&/^\d{1,2}[-/]\d{1,2}[-/]\d{4}$/.test(h.d)&&Number.isFinite(h.s)});
  H.push({d:new Date().toLocaleDateString("es-CL"),s:tot});try{localStorage.setItem("sentinel_hist",JSON.stringify(H.slice(-8)))}catch(e){}
- $("hist").innerHTML="<h3>Evolución del score</h3><p class='mute' style='margin:6px 0 0'>"+(H.length>1?H.map(function(h){return h.d+": <b>"+h.s+"</b>"}).join(" → "):"Esta es su primera medición. Repita la evaluación para ver su avance.")+"</p>";
+ $("hist").innerHTML="<h3>Evolución del score</h3><p class='mute' style='margin:6px 0 0'>"+(H.length>1?H.map(function(h){return h.d+": <b>"+h.s+"</b>"}).join(" → "):"Esta es su primera medición. Solicite una reevaluación para medir su avance.")+"</p>";
  $("wa").href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hola, hice el Sentinel Check de "+($("emp").value.trim()||"Organización sin nombre")+" y obtuve "+tot+"/100. Quiero conversar sobre los siguientes pasos.");
  $("who").textContent=($("emp").value.trim()||"Organización sin nombre")+" · "+$("sec").value+" · "+$("tam").value;
  var sm="Empresa: "+($("emp").value.trim()||"Organización sin nombre")+"\nSector: "+$("sec").value+"\nTamaño: "+$("tam").value+"\nCorreo: "+"No solicitado"+"\nScore: "+tot+"/100 ("+l[0]+")\n\nDominios:\n"+ds.map(function(d,k){return"- "+D[k][0]+": "+(d.v===null?"N/A":d.v)}).join("\n")+"\n\nPrioridades:\n"+F.slice(0,5).map(function(f){return"- "+f.t}).join("\n");
- lastSummary=sm+"\n\nExclusiones: "+Object.keys(NA).map(function(k){return "P"+(+k+1)+": "+NA[k]}).join("; ")+"\nSAM 1.0-piloto; resultado declarado.";
+ lastSummary=sm+"\n\nExclusiones: "+(Object.keys(NA).length?Object.keys(NA).map(function(k){return "P"+(+k+1)+": "+NA[k]}).join("; "):"Ninguna")+"\nSAM 1.0-piloto; resultado declarado.";
  $("mail").href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Sentinel Check: "+($("emp").value.trim()||"Organización sin nombre")+" ("+tot+"/100)")+"&body="+encodeURIComponent(lastSummary);
  
  var sector=$("sec").value,type=$("dataType").value,solo=$("tam").selectedIndex===0;
